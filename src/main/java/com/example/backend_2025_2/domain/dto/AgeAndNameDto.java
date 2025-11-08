@@ -1,4 +1,4 @@
-package com.example.backend_2025_2;
+package com.example.backend_2025_2.domain.dto;
 
 public record AgeAndNameDto (
         int age,

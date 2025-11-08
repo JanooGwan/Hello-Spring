@@ -1,4 +1,4 @@
-package com.example.backend_2025_2;
+package com.example.backend_2025_2.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
