@@ -6,10 +6,37 @@ import com.example.backend_2025_2.domain.dto.ArticleResponseDto;
 import com.example.backend_2025_2.domain.dto.ArticleUpdateRequestDto;
 import com.example.backend_2025_2.repository.ArticleRepository;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class ArticleService {
 
+    private final ArticleRepository articleRepository = new ArticleRepository();
+
+
+    public Optional<ArticleResponseDto> getArticleById(Long id) {
+        return articleRepository.findById(id)
+                .map(ArticleResponseDto::from);
+    }
+
+    public ArticleResponseDto createArticle(ArticleCreateRequestDto requestDto) {
+        Article article = articleRepository.save(requestDto.toEntity());
+        return ArticleResponseDto.from(article);
+    }
+
+    public Optional<ArticleResponseDto> updateArticle(Long id, ArticleUpdateRequestDto requestDto) {
+        Optional<Article> existingArticle = articleRepository.findById(id);
+
+        if (existingArticle.isPresent()) {
+            Article article = existingArticle.get();
+            article.update(requestDto.title(), requestDto.content());
+            return Optional.of(ArticleResponseDto.from(article));
+        }
+
+        return Optional.empty();
+    }
+
+    public Optional<ArticleResponseDto> deleteArticle(Long id) {
+        Optional<Article> article = Optional.ofNullable(articleRepository.deleteById(id));
+        return article.map(ArticleResponseDto::from);
+    }
 }
