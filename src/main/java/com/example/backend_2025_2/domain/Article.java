@@ -20,4 +20,24 @@ public class Article {
         this.createdDate = LocalDateTime.now();
         this.modifiedDate = null;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
 }

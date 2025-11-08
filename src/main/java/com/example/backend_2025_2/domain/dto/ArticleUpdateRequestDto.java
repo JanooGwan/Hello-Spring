@@ -2,8 +2,7 @@ package com.example.backend_2025_2.domain.dto;
 
 import com.example.backend_2025_2.domain.Article;
 
-
-public record ArticleRequestDto (
+public record ArticleUpdateRequestDto (
         String title,
         String content
 ) {
