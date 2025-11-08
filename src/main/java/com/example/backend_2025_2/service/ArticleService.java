@@ -37,6 +37,7 @@ public class ArticleService {
 
     public Optional<ArticleResponseDto> deleteArticle(Long id) {
         Optional<Article> article = Optional.ofNullable(articleRepository.deleteById(id));
+        --Article.articleCount;
         return article.map(ArticleResponseDto::from);
     }
 }

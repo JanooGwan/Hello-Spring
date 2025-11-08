@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Article {
 
-    private static Long articleCount = 0L;
+    public static Long articleCount = 0L;
 
     private Long id;
     private String title;
