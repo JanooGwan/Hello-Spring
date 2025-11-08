@@ -1,7 +1,6 @@
 package com.example.backend_2025_2.repository;
 
 import com.example.backend_2025_2.domain.Article;
-import com.example.backend_2025_2.domain.dto.ArticleCreateRequestDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +16,33 @@ public class ArticleRepository {
                 .findFirst();
     }
 
-    public Article save(ArticleCreateRequestDto articleRequestDto) {
-        Article article = articleRequestDto.toEntity();
+    public Article save(Article article) {
         articles.add(article);
         return article;
     }
 
-    public Article update(Article)
+    public Article update(Long id, Article article) {
+        Optional<Article> existingArticle = findById(id);
+
+        if (existingArticle.isPresent()) {
+            articles.remove(existingArticle.get());
+            articles.add(article);
+            return article;
+        }
+
+        return null;
+    }
+
+    public Article deleteById(Long id) {
+        Optional<Article> existingArticle = findById(id);
+
+        if (existingArticle.isPresent()) {
+            Article article = existingArticle.get();
+            articles.remove(article);
+            return article;
+        }
+
+        return null;
+    }
+
 }
